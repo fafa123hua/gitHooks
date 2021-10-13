@@ -42,8 +42,6 @@ http://git-scm.com/book/en/v2在一书中将hooks划分为如下类型
 
 在`git init`初始化后自动生成git hooks文件，进入文件夹后可以看到每个文件都有一个`.sample` 后缀，Git决定是否执行一个hook文件是通过其文件名来判定的， `.sample` 代表不执行，所以在实现过程中需要去掉后缀才能正常使用。
 
-
-
 #### commit-msg实现代码
 
 ```js
@@ -62,10 +60,22 @@ if (!commitRE.test(msg)) {
   console.error(
     '详情请查看 git commit 提交规范：https://juejin.cn/post/6844903672162304013'
   )
-  process.exit(1)
+  process.exit(1)//打断
 }
 
 ```
 
 #### 效果
+
+`commit-msg` 是在我们编辑完一个commit的消息后进行调用判断
+
+![Image text](https://raw.githubusercontent.com/fafa123hua/img-folder/master/commit-msg%E6%95%88%E6%9E%9C.png)
+
+#### 同步
+
+为了让git hooks文件可以同步给其他人，并且无需手动配置，这里主要用两种方式实现：
+
+##### 链接自定义文件
+
+##### Husky
 
